@@ -1,0 +1,22 @@
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    image: mysql:${MYSQL_VERSION:-8.0}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-DBtodolist}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-admin}
+      MYSQL_USER: ${MYSQL_USER:-admin}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-admin}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/mysql:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/mysql:rw
+
+volumes:
+  database_data:
+    driver: local

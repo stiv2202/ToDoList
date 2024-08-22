@@ -1,0 +1,13 @@
+###> symfony/framework-bundle ###
+# Ignorar archivos .env en cualquier subdirectorio
+**/.env.local
+**/.env.local.php
+**/.env.*.local
+**/.env
+
+# Ignorar directorios comunes
+**/config/secrets/prod/prod.decrypt.private.php
+**/public/bundles/
+**/var/
+**/vendor/
+###< symfony/framework-bundle ###
