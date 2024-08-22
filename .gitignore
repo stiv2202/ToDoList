@@ -3,7 +3,6 @@
 **/.env.local
 **/.env.local.php
 **/.env.*.local
-**/.env
 
 # Ignorar directorios comunes
 **/config/secrets/prod/prod.decrypt.private.php
