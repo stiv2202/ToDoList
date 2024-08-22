@@ -1,0 +1,25 @@
+.container{
+    cursor: pointer;
+}
+
+.subContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 50px;
+}
+
+.subContainer h3{
+    margin: 0;
+}
+
+.showToggle{
+    visibility: visible;
+    opacity: 1;
+}
+
+.hideToggle{
+    visibility: hidden;
+    opacity: 0;
+}

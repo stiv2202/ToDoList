@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\GetUserInfoAction;
 use App\Controller\RegisterAction;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +18,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ApiResource(
     operations: [
+        new Get(
+            uriTemplate:'/getUser',
+            controller: GetUserInfoAction::class,
+            name:'get_user',
+        ),
+        new Delete(),
+        new Patch(),
         new Post(
             uriTemplate: '/register',
             controller: RegisterAction::class,

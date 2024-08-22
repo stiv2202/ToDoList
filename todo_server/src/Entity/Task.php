@@ -32,7 +32,7 @@ class Task
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $owner = null;
+    private ?User $owner = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?project $project = null;
@@ -107,12 +107,12 @@ class Task
         return $this;
     }
 
-    public function getOwner(): ?user
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    public function setOwner(?user $owner): static
+    public function setOwner(?User $owner): static
     {
         $this->owner = $owner;
 

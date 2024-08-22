@@ -22,7 +22,7 @@ class Tag
 
     #[ORM\ManyToOne(inversedBy: 'tags')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $owner = null;
+    private ?User $owner = null;
 
     /**
      * @var Collection<int, Task>
@@ -52,12 +52,12 @@ class Tag
         return $this;
     }
 
-    public function getOwner(): ?user
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    public function setOwner(?user $owner): static
+    public function setOwner(?User $owner): static
     {
         $this->owner = $owner;
 

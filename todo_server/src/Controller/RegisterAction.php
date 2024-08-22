@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,8 @@ class RegisterAction extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         UserRepository $userRepository,
         ValidatorInterface $validator,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        JWTTokenManagerInterface $jwtManager // Inject the JWTManager
     ): Response {
         $data = json_decode($request->getContent(), true);
 
@@ -58,8 +60,12 @@ class RegisterAction extends AbstractController
         $em->persist($user);
         $em->flush();
 
+        // Generate the JWT token
+        $token = $jwtManager->create($user);
+
         return $this->json([
             'message' => 'Usuario registrado',
+            'token' => $token, // Include the token in the response
             'user' => [
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
